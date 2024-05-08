@@ -16,16 +16,18 @@ int main() {
 	if (str_len % 3) {
 		size++;
 	}
+
 	size = size << 2;
 	size++;
 	
 	ret_arr = (char*)malloc(size * sizeof(char));
-	b64->decode(ab, str_len, ret_arr);
+	
+	b64->encode(ab, str_len, ret_arr);
 	ret_arr[size - 1] = 0;
 	printf("%s\n", ret_arr);
 
 	rt_arr = (char*)malloc((str_len + 1) * sizeof(char));
-	b64->encode(ret_arr, size - 1, rt_arr);
+	b64->decode(ret_arr, size - 1, rt_arr);
 	rt_arr[str_len] = 0;
 	printf("%s", rt_arr);
 
