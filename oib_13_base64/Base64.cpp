@@ -1,5 +1,6 @@
 #include "Base64.h"
 
+
 Base64::Base64() {
 	char abc[] =
 		"ABCDEFGHIJKLMNOPQRSTUVWXYZ"    // 26

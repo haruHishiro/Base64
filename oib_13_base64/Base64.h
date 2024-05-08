@@ -1,4 +1,6 @@
 #pragma once
+
+
 class Base64 {
 public:
 	Base64();
@@ -11,4 +13,3 @@ private:
 	void getChars(unsigned char* chrs, char* chars);
 	char abc[64];
 };
-
