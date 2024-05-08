@@ -31,6 +31,7 @@ int main() {
 	rt_arr[str_len] = 0;
 	printf("%s", rt_arr);
 
+	delete b64;
 	free(rt_arr);
 	free(ret_arr);
 	return 0;

@@ -1,31 +1,31 @@
 #include "Base64.h"
 
 Base64::Base64() {
-	char hardcodeAbc[] =
+	char abc[] =
 		"ABCDEFGHIJKLMNOPQRSTUVWXYZ"    // 26
 		"abcdefghijklmnopqrstuvwxyz"   // 26
 		"0123456789"                  // 10
 		"-_";                        // 2
 
 	for (char i = 0; i < 64; i++) {
-		Base64::hardcode_abc[i] = hardcodeAbc[i];
+		Base64::abc[i] = abc[i];
 	}
 }
 
 Base64::Base64(char mode) {
-	char hardcodeAbc[] =
+	char abc[] =
 		"ABCDEFGHIJKLMNOPQRSTUVWXYZ"    // 26
 		"abcdefghijklmnopqrstuvwxyz"   // 26
 		"0123456789"                  // 10
 		"-_";                        // 2
 
 	for (char i = 0; i < 64; i++) {
-		Base64::hardcode_abc[i] = hardcodeAbc[i];
+		Base64::abc[i] = abc[i];
 	}
 
 	if (mode) {
-		Base64::hardcode_abc[62] = '+';
-		Base64::hardcode_abc[62] = '/';
+		Base64::abc[62] = '+';
+		Base64::abc[62] = '/';
 	}
 }
 
@@ -41,7 +41,6 @@ void Base64::decode(char* string, unsigned char str_len, char* ret_arr) {
 		_4_bytes[0] = Base64::getIndex(string[0 + _offset]);
 		_4_bytes[1] = Base64::getIndex(string[1 + _offset]);
 		if (string[2 + _offset] == '=' || string[3 + _offset] == '=') {
-			//printf("here\n");
 			f = 1;
 			break;
 		}
@@ -98,12 +97,12 @@ void Base64::encode(char* string, unsigned char str_len, char* ret_arr) {
 
 		_offset += offset;
 		char index = i32 >> 24;
-		ret_arr[0 + _offset] = Base64::hardcode_abc[index];
+		ret_arr[0 + _offset] = Base64::abc[index];
 		index = (i32 >> 16) & 0xff;
-		ret_arr[1 + _offset] = Base64::hardcode_abc[index];
+		ret_arr[1 + _offset] = Base64::abc[index];
 		index = (i32 >> 8) & 0xff;
-		ret_arr[2 + _offset] = Base64::hardcode_abc[index];
-		ret_arr[3 + _offset] = Base64::hardcode_abc[i32 & 0xff];
+		ret_arr[2 + _offset] = Base64::abc[index];
+		ret_arr[3 + _offset] = Base64::abc[i32 & 0xff];
 	}
 
 	if (paddings) {
@@ -120,11 +119,11 @@ void Base64::encode(char* string, unsigned char str_len, char* ret_arr) {
 		_offset += offset;
 
 		char index = i32 >> 24;
-		ret_arr[0 + _offset] = Base64::hardcode_abc[index];
+		ret_arr[0 + _offset] = Base64::abc[index];
 		index = (i32 >> 16) & 0xff;
-		ret_arr[1 + _offset] = Base64::hardcode_abc[index];
+		ret_arr[1 + _offset] = Base64::abc[index];
 		index = (i32 >> 8) & 0xff;
-		ret_arr[2 + _offset] = Base64::hardcode_abc[index];
+		ret_arr[2 + _offset] = Base64::abc[index];
 
 		if (paddings == 2) {
 			ret_arr[2 + _offset] = '=';

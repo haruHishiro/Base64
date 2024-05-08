@@ -9,6 +9,6 @@ private:
 	char getIndex(char chr);
 	unsigned __int32 get_Int32(char* bytes);
 	void getChars(unsigned char* chrs, char* chars);
-	char hardcode_abc[64];
+	char abc[64];
 };
 
